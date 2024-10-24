@@ -1,5 +1,6 @@
 import os
 import json
+import random
 
 try:
     from sonic_platform_base.fan_base import FanBase
@@ -23,11 +24,8 @@ class Fan(FanBase):
             raise FileNotFoundError("Metadata file {} not found".format(self.metadata_file))
         return metadata
 
-    def get_speed(self):
-        for item in self.metadata['chassis']['fan_drawers']['fans']:
-            if item['name'] == self.name:
-                return item['speed']
-        return None
+    def get_speed(self): 
+        return round(random.randint(1000, 5000))
 
     def get_status_led(self):
         for item in self.metadata['chassis']['fan_drawers']['fans']:

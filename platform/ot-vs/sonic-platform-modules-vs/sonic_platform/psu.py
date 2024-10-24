@@ -1,5 +1,6 @@
 import os
 import json
+import random
 
 try:
     from sonic_platform_base.psu_base import PsuBase
@@ -22,12 +23,44 @@ class Psu(PsuBase):
         else:
             raise FileNotFoundError("Metadata file {} not found".format(self.metadata_file))
         return metadata
+    
+    def get_name(self):
+        return self.name
 
     def get_psu_status(self):
         for item in self.metadata['chassis']['psus']:
             if item['name'] == self.name:
                 return item['status_led']
         return None
+    
+    def get_presence(self):
+        """
+        Retrieves the presence status of power supply unit (PSU) defined
+
+        Returns:
+            bool: True if PSU is present, False if not
+        """
+        return True
+    
+    def get_voltage(self):
+        """
+        Retrieves current PSU voltage output
+
+        Returns:
+            A float number, the output voltage in volts,
+            e.g. 12.1
+        """
+        return round(random.uniform(10.0, 12.0), 1)
+
+    def get_current(self):
+        """
+        Retrieves present electric current supplied by PSU
+
+        Returns:
+            A float number, the electric current in amperes, e.g 15.4
+        """
+        return round(random.uniform(15.0, 20.0), 1)
+
 
 
 
