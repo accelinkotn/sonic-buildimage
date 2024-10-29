@@ -1,1 +1,2 @@
 ot_vs_chassis_metadata.json /etc/sonic
+sonic_platform-1.0-py3-none-any.whl usr/share/sonic/device/x86_64-ot_kvm_x86_64_4_asic-r0
